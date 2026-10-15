@@ -30,6 +30,7 @@ public class NuevoMecanico extends javax.swing.JFrame {
 
     public NuevoMecanico() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
     }
 
     /**

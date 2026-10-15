@@ -28,6 +28,7 @@ public class NuevoServicio extends javax.swing.JFrame {
 
     public NuevoServicio() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
         cargarListaMecanicos();
         cargarListaAutos();
         cargarListaTipoServicio();

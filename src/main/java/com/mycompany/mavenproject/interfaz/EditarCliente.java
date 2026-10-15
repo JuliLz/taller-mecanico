@@ -31,6 +31,7 @@ public class EditarCliente extends javax.swing.JFrame {
 
     public EditarCliente(Cliente clienteAEditar) {
         initComponents();
+        EstiloInterfaz.aplicar(this);
         this.clienteAEditar = clienteAEditar;
         precargarDatosTipoServicioSeleccionado();
     }

@@ -25,6 +25,7 @@ public class ListaTipoServicio extends javax.swing.JFrame {
 
     public ListaTipoServicio() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
     }
 
     /**

@@ -32,6 +32,7 @@ public class EditarVehiculo extends javax.swing.JFrame {
     
     public EditarVehiculo(Auto autoAEditar) {
         initComponents();
+        EstiloInterfaz.aplicar(this);
         cargarClientes();
         this.autoAEditar = autoAEditar;
         precargarDatosAutoSeleccionado();

@@ -30,6 +30,7 @@ public class NuevoTipoServicio extends javax.swing.JFrame {
 
     public NuevoTipoServicio() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
     }
 
     /**

@@ -31,6 +31,7 @@ public class EditarTipoServicio extends javax.swing.JFrame {
 
     public EditarTipoServicio(TipoServicio tipoServicioAEditar) {
         initComponents();
+        EstiloInterfaz.aplicar(this);
         this.tipoServicioAEditar = tipoServicioAEditar;
         precargarDatosTipoServicioSeleccionado();
     }

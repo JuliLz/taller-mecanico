@@ -24,6 +24,7 @@ public class ListaServiciosMecanicos extends javax.swing.JFrame {
 
     public ListaServiciosMecanicos() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
     }
 
     /**
@@ -42,7 +43,7 @@ public class ListaServiciosMecanicos extends javax.swing.JFrame {
         tableServiciosMecanicos = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 900));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -173,13 +174,13 @@ public class ListaServiciosMecanicos extends javax.swing.JFrame {
             for (ServicioMecanico servMec : listaServicios) {
                 Object[] fila = {
                     servMec.getId(),
-                    servMec.getAuto().getDominio(),
-                    formato.format(servMec.getFechaInicio()),
-                    (formato.format(servMec.getFechaFin()).equals("01/02/1900"))?"Sin fecha de fin":formato.format(servMec.getFechaFin()),
+                    servMec.getAuto() == null ? "Sin vehículo" : servMec.getAuto().getDominio(),
+                    formatearFecha(servMec.getFechaInicio()),
+                    formatearFechaFin(servMec.getFechaFin(), formato),
                     "$" + servMec.getImporte(),
-                    servMec.getMecanico(),
-                    servMec.getAuto().getMarca(),
-                    servMec.getAuto().getModelo(),
+                    servMec.getMecanico() == null ? "Sin mecánico" : servMec.getMecanico(),
+                    servMec.getAuto() == null ? "" : servMec.getAuto().getMarca(),
+                    servMec.getAuto() == null ? "" : servMec.getAuto().getModelo(),
                     servMec.getDescripcion(),
                     servMec.getTipoServicio(),
                     servMec.isFinalizado() ? "Si" : "No"
@@ -188,6 +189,17 @@ public class ListaServiciosMecanicos extends javax.swing.JFrame {
             }
         }
         tableServiciosMecanicos.setModel(tabla);
+    }
+
+    private String formatearFecha(java.util.Date fecha) {
+        return fecha == null ? "Sin fecha" : new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+    }
+
+    private String formatearFechaFin(java.util.Date fecha, SimpleDateFormat formato) {
+        if (fecha == null || formato.format(fecha).equals("01/02/1900")) {
+            return "Sin fecha de fin";
+        }
+        return formato.format(fecha);
     }
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

@@ -31,6 +31,7 @@ public class EditarMecanico extends javax.swing.JFrame {
 
     public EditarMecanico(Mecanico mecanicoAEditar) {
         initComponents();
+        EstiloInterfaz.aplicar(this);
         this.mecanicoAEditar = mecanicoAEditar;
         precargarDatosTipoServicioSeleccionado();
     }

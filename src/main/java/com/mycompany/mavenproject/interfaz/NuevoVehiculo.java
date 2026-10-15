@@ -30,6 +30,7 @@ public class NuevoVehiculo extends javax.swing.JFrame {
 
     public NuevoVehiculo() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
         cargarClientes();
     }
 

@@ -22,6 +22,7 @@ public class NuevoCliente extends javax.swing.JFrame {
 
     public NuevoCliente() {
         initComponents();
+        EstiloInterfaz.aplicar(this);
     }
 
     /**
