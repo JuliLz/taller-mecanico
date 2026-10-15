@@ -94,6 +94,18 @@ public class MecanicoJpaController implements Serializable {
         }
     }
 
+    public boolean tieneServiciosAsociados(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery(
+                    "SELECT COUNT(s) FROM ServicioMecanico s WHERE s.mecanico.id = :id");
+            query.setParameter("id", id);
+            return ((Long) query.getSingleResult()) > 0;
+        } finally {
+            em.close();
+        }
+    }
+
     public List<Mecanico> findMecanicoEntities() {
         return findMecanicoEntities(true, -1, -1);
     }

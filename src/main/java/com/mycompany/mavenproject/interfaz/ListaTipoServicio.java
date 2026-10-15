@@ -143,9 +143,16 @@ public class ListaTipoServicio extends javax.swing.JFrame {
             return;
         }
         int idTipoServicioSeleccionado = (int) tableTipoServicio.getValueAt(filaSeleccionada, 0);
-        controladoraLogica.eliminarTipoServicio(idTipoServicioSeleccionado);
-        mostrarMensaje("Tipo de Servicio borrado con éxito", "Éxito", "info");
-        cargarTabla();
+        boolean eliminado = controladoraLogica.eliminarTipoServicio(idTipoServicioSeleccionado);
+        if (eliminado) {
+            mostrarMensaje("Tipo de Servicio borrado con éxito", "Éxito", "info");
+            cargarTabla();
+        } else {
+            mostrarMensaje(
+                    "No se puede eliminar este tipo de servicio porque está siendo utilizado por servicios mecánicos.",
+                    "No se puede eliminar",
+                    "error");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

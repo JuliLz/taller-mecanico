@@ -140,9 +140,16 @@ public class ListaMecanicos extends javax.swing.JFrame {
             return;
         }
         int idMecanicoSeleccionado = (int) tableMecanico.getValueAt(filaSeleccionada, 0);
-        controladoraLogica.eliminarMecanico(idMecanicoSeleccionado);
-        mostrarMensaje("Mecánico borrado con éxito", "Éxito", "info");
-        cargarTabla();
+        boolean eliminado = controladoraLogica.eliminarMecanico(idMecanicoSeleccionado);
+        if (eliminado) {
+            mostrarMensaje("Mecánico borrado con éxito", "Éxito", "info");
+            cargarTabla();
+        } else {
+            mostrarMensaje(
+                    "No se puede eliminar este mecánico porque tiene servicios mecánicos asociados.",
+                    "No se puede eliminar",
+                    "error");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

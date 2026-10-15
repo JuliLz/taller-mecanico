@@ -21,6 +21,7 @@ public class Auto implements Serializable {
     
     private static final Pattern patente_vieja = Pattern.compile("^[A-Z]{3}[0-9]{3}$");
     private static final Pattern patente_nueva = Pattern.compile("^[A-Z]{2}[0-9]{3}[A-Z]{2}$");
+    private static final Pattern patente_moto = Pattern.compile("^[A-Z][0-9]{3}[A-Z]{3}$");
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -116,7 +117,9 @@ public class Auto implements Serializable {
             return false;
         }
         String dom = dominio.trim().toUpperCase().replace(" ", "");
-        return patente_vieja.matcher(dom).matches() || patente_nueva.matcher(dom).matches();
+        return patente_vieja.matcher(dom).matches()
+                || patente_nueva.matcher(dom).matches()
+                || patente_moto.matcher(dom).matches();
     }
     
     public Auto(int id, String dominio, String marca, String modelo, int capacidad, Cliente cliente, List<ServicioMecanico> serviciosRealizados) {

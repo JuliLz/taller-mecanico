@@ -12,8 +12,8 @@ public class ControladoraLogica {
         controlPersis.crearMecanico (mecanico);
     }
     
-    public void eliminarMecanico(int id) {
-        controlPersis.eliminarMecanico (id);
+    public boolean eliminarMecanico(int id) {
+        return controlPersis.eliminarMecanico(id);
     }
     
     public void editarMecanico(Mecanico mecanico) {
@@ -56,8 +56,8 @@ public class ControladoraLogica {
         controlPersis.editarTipoServicio(tipoServicio);
     }
     
-    public void eliminarTipoServicio(int id) {
-        controlPersis.eliminarTipoServicio (id);
+    public boolean eliminarTipoServicio(int id) {
+        return controlPersis.eliminarTipoServicio(id);
     }
     
     public TipoServicio consultarTipoServicio(int id) {

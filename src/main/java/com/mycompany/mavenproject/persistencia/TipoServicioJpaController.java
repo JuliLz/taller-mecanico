@@ -87,6 +87,18 @@ public class TipoServicioJpaController implements Serializable {
         }
     }
 
+    public boolean tieneServiciosAsociados(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery(
+                    "SELECT COUNT(s) FROM ServicioMecanico s WHERE s.tipoServicio.id = :id");
+            query.setParameter("id", id);
+            return ((Long) query.getSingleResult()) > 0;
+        } finally {
+            em.close();
+        }
+    }
+
     public List<TipoServicio> findTipoServicioEntities() {
         return findTipoServicioEntities(true, -1, -1);
     }

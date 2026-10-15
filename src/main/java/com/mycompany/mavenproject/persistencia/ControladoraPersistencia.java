@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.PersistenceException;
 
 public class ControladoraPersistencia {
     MecanicoJpaController mecJpa = new MecanicoJpaController();
@@ -19,11 +20,20 @@ public class ControladoraPersistencia {
     ClienteJpaController clienteJpa = new ClienteJpaController();
     AutoJpaController autoJpa = new AutoJpaController();
 
-    public void eliminarMecanico(int id) {
+    public boolean eliminarMecanico(int id) {
+        if (mecJpa.tieneServiciosAsociados(id)) {
+            return false;
+        }
         try {
             mecJpa.destroy(id);
+            return true;
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, "no hay mecanico con ese id", ex);
+            return false;
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,
+                    "no se puede eliminar el mecanico porque tiene registros asociados", ex);
+            return false;
         }
     }
     
@@ -92,11 +102,20 @@ public class ControladoraPersistencia {
         }
     }
 
-    public void eliminarTipoServicio(int id) {
+    public boolean eliminarTipoServicio(int id) {
+        if (tipoServJpa.tieneServiciosAsociados(id)) {
+            return false;
+        }
         try {
             tipoServJpa.destroy(id);
+            return true;
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE,
+                    "no se puede eliminar el tipo de servicio porque tiene registros asociados", ex);
+            return false;
         }
     }
 

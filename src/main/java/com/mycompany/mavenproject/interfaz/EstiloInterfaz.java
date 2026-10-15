@@ -68,8 +68,14 @@ final class EstiloInterfaz {
             header.setForeground(Color.WHITE);
             header.setBackground(AZUL_OSCURO);
             header.setReorderingAllowed(false);
-        } else if (componente instanceof JTextField || componente instanceof JTextArea
-                || componente instanceof JComboBox) {
+        } else if (componente instanceof JComboBox) {
+            JComboBox<?> combo = (JComboBox<?>) componente;
+            combo.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+            combo.setBackground(Color.WHITE);
+            combo.setOpaque(true);
+            combo.setBorder(BorderFactory.createLineBorder(BORDE));
+            combo.setMinimumSize(new java.awt.Dimension(180, 40));
+        } else if (componente instanceof JTextField || componente instanceof JTextArea) {
             JComponent input = (JComponent) componente;
             input.setFont(new Font("Segoe UI", Font.PLAIN, 15));
             input.setBorder(BorderFactory.createCompoundBorder(
